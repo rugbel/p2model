@@ -16,3 +16,5 @@ LazyData: true
 LazyLoad: yes
 RoxygenNote: 6.0.1
 VignetteBuilder: knitr
+URL: http://github.com/rugbel/p2model
+Bugreports: http://github.com/rugbel/p2model/issues
