@@ -1,0 +1,17 @@
+[
+    {
+        "definitions" : [
+            {
+                "column" : 32,
+                "file" : "/Users/rbellio/Google Drive/proveADMB/p2model/src/p2model.cpp",
+                "kind" : 7,
+                "line" : 5,
+                "name" : "operator()",
+                "parent_name" : "objective_function<Type>",
+                "usr" : "c:@CT>1#T@objective_function@F@operator()#"
+            }
+        ],
+        "file" : "/Users/rbellio/Google Drive/proveADMB/p2model/src/p2model.cpp",
+        "file_last_write" : 1504872209
+    }
+]

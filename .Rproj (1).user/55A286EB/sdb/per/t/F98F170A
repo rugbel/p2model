@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "Package: p2model\nTitle: Maximum Likelihood Estimation of p2 models \nVersion: 0.3\nAuthor: Ruggero Bellio\nMaintainer: Ruggero Bellio <ruggero.bellio@uniud.it>\nDescription: Function for fitting the p2 model for directed binary networks, using \n    maximum likelihood estimation via the Laplace approximation. Includes also some\n    functions for data simulation and for model goodness of fit.\nDepends: R (>= 3.4.1), TMB (>= 1.7.11), statnet.common, ergm\nImports: parallel, msm, ucminf, numDeriv, MASS, fields, igraph, NetData, grDevices, network\nSuggests: knitr, rmarkdown\nLinkingTo: TMB, RcppEigen\nLicense: GPL-3\nEncoding: UTF-8\nLazyData: true\nLazyLoad: yes\nRoxygenNote: 6.0.1\nVignetteBuilder: knitr\nURL: http://github.com/rugbel/p2model\nBugreports: http://github.com/rugbel/p2model/issues\n",
+    "created" : 1511265260314.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "657637146",
+    "id" : "F98F170A",
+    "lastKnownWriteTime" : 1511265307,
+    "last_content_update" : 1511265307683,
+    "path" : "~/Google Drive/proveADMB/p2model/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "dcf"
+}
