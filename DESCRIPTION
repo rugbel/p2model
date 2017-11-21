@@ -1,0 +1,18 @@
+Package: p2model
+Title: Maximum Likelihood Estimation of p2 models 
+Version: 0.3
+Author: Ruggero Bellio
+Maintainer: Ruggero Bellio <ruggero.bellio@uniud.it>
+Description: Function for fitting the p2 model for directed binary networks, using 
+    maximum likelihood estimation via the Laplace approximation. Includes also some
+    functions for data simulation and for model goodness of fit.
+Depends: R (>= 3.4.1), TMB (>= 1.7.11), statnet.common, ergm
+Imports: parallel, msm, ucminf, numDeriv, MASS, fields, igraph, NetData, grDevices, network
+Suggests: knitr, rmarkdown
+LinkingTo: TMB, RcppEigen
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+LazyLoad: yes
+RoxygenNote: 6.0.1
+VignetteBuilder: knitr
