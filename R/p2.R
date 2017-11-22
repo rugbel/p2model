@@ -67,7 +67,7 @@
 #' \item{\code{M}}{Number of importance sampling replications.}
 #' \item{\code{penflag, penSigma}}{Arguments for penalized estimation.}
 #' @export
-#' @importFrom NetData kracknets
+#' @import NetData
 #' @useDynLib p2model
 #' @author Ruggero Bellio
 #' @references  Bellio, R. and Soriani, N. (2017). Maximum likelihood estimation based on the
@@ -206,7 +206,7 @@ fit_p2 <- function(y, XnS, XnR, XvD, XvC, M = 0, seed = NULL, trace = FALSE,
 
 
 
-#' @method print p2
+#' @export
 print.p2 <- function(fit, ...) {
   cat("p2 model fit by ML \n")
 
@@ -214,7 +214,7 @@ print.p2 <- function(fit, ...) {
 
   cat("Model coefficients: \n")
   p <- length(fit$theta)-3
-  print.default(fit$theta[1:p])
+  print.default(fit$theta[1:p], ...)
 
   cat("Variance matrix of random effects: \n")
 
@@ -258,7 +258,7 @@ print.p2 <- function(fit, ...) {
 #' to \code{TMB:MakeADFun}.}
 #' \item{\code{sdrep}}{Summary object returned by \code{TMB::sdreport}. This is an
 #' object with many slots, useful for TMB users.}
-#' @import TMB
+#' @import NetData
 #' @export
 #' @author Ruggero Bellio
 #' @examples
@@ -358,7 +358,7 @@ fit_p1 <- function(y, XnS, XnR, XvD, XvC, trace=FALSE, init=NULL,  opt=nlminb,..
 }
 
 
-#' @method print p1
+#' @export
 print.p1 <- function(fit, ...) {
   cat("p1 model fit by ML \n")
 
@@ -366,7 +366,7 @@ print.p1 <- function(fit, ...) {
 
   cat("Model coefficients: \n")
   p <- length(fit$theta)
-  print.default(fit$theta[1:p])
+  print.default(fit$theta[1:p], ...)
   invisible(fit)
 }
 
