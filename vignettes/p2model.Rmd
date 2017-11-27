@@ -82,6 +82,7 @@ par(mfrow = c(2, 3))
 g2 <- gof_p2(fit, GOF = ~idegree + odegree + distance + espartners + dspartners + triadcensus)
 plot(g2, main="")
 ```
+
 The plots are obtained by exploiting  the possibility to simulate networks from a given model, 
 that can be used directly by applying the 
 `simulate_p2` function
