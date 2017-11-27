@@ -80,7 +80,9 @@ g2 <- gof_p2(fit, GOF = ~idegree + odegree + distance + espartners + dspartners 
 plot(g2, main="")
 ```
 
-![](p2model_files/figure-markdown_github/gof%20plot-1.png) The plots are obtained by exploiting the possibility to simulate networks from a given model, that can be used directly by applying the `simulate_p2` function
+![](p2model_files/figure-markdown_github/gof%20plot-1.png) 
+
+The plots are obtained by exploiting the possibility to simulate networks from a given model, that can be used directly by applying the `simulate_p2` function
 
 ``` r
 obj.sim <- simulate_p2(fit, nsim = 100)
