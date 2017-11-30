@@ -470,15 +470,15 @@ plot_effects_p2 <- function(fit, resolution = round(length(fit$ranef)) / 2, seed
 #'
 simulate_p2 <- function(objfit, nsim = 100, conditional = FALSE, theta = NULL, Sigma = NULL)
 {
-   random <- !is.null(objfit$random)
+   random <- !is.null(objfit$ranef)
    # allocate all the networks using the ergm package
    y <-  network(objfit$model.data$y, directed = TRUE)
    nw.sim <- simulate(y ~ edges, coef = 0, nsim = nsim)
    g <- ncol(y[,])
    if(random & conditional)
     {
-     a0 <- objfit$random[1:g]
-     b0 <- objfit$random[g+1:g]
+     a0 <- objfit$ranef[1:g]
+     b0 <- objfit$ranef[g+1:g]
     }
    else a0 <- b0 <- rep(0,g)
    # recover matrices

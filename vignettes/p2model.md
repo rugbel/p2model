@@ -92,6 +92,7 @@ summary(obj.sim)
     ##          Length Class        Mode
     ## networks 100    network.list list
 
+
 Finally, the package makes available maximum likelihood estimation
 using parameter dependent Laplace Importance Sampling, implemented by
 the `fit_p2_IS` function, though the results in Bellio and Soriani
