@@ -94,7 +94,6 @@ Finally, the package makes available maximum likelihood estimation using
 parameter dependent Laplace Importance Sampling, implemented by the `fit_p2_IS`
 function, though the results in Bellio and Soriani (2017) suggests that first-order
 Laplace approximation usually provides satisfactory results. The method is computationally
-demanding, but the `fit_p2_IS function supports multiple-core parallel computation. The
-basic way to call the function in this example would  simply  be 
-`fit_p2_IS(fit, nc = detectCores())`.
+demanding, but the `fit_p2_IS` function supports multiple-core parallel computation. The
+basic way to call the function in this example would  simply  be `fit_p2_IS(fit, nc = detectCores())`.
 

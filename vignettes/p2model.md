@@ -80,7 +80,9 @@ g2 <- gof_p2(fit, GOF = ~idegree + odegree + distance + espartners + dspartners 
 plot(g2, main="")
 ```
 
-![](p2model_files/figure-markdown_github/gof%20plot-1.png) The plots are obtained by exploiting the possibility to simulate networks from a given model, that can be used directly by applying the `simulate_p2` function
+![](p2model_files/figure-markdown_github/gof%20plot-1.png) 
+
+The plots are obtained by exploiting the possibility to simulate networks from a given model, that can be used directly by applying the `simulate_p2` function
 
 ``` r
 obj.sim <- simulate_p2(fit, nsim = 100)
@@ -90,4 +92,11 @@ summary(obj.sim)
     ##          Length Class        Mode
     ## networks 100    network.list list
 
-Finally, the package makes available maximum likelihood estimation using parameter dependent Laplace Importance Sampling, implemented by the `fit_p2_IS` function, though the results in Bellio and Soriani (2017) suggests that first-order Laplace approximation usually provides satisfactory results. The method is computationally demanding, but the `fit_p2_IS function supports multiple-core parallel computation. The basic way to call the function in this example would  simply  be`fit\_p2\_IS(fit, nc = detectCores())\`.
+Finally, the package makes available maximum likelihood estimation
+using parameter dependent Laplace Importance Sampling, implemented by
+the `fit_p2_IS` function, though the results in Bellio and Soriani
+(2017) suggests that first-order Laplace approximation usually
+provides satisfactory results. The method is computationally
+demanding, but the `fit_p2_IS\` function supports multiple-core parallel
+computation. The basic way to call the function in this example would
+simply  be `fit\_p2\_IS(fit, nc = detectCores())\`.
