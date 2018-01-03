@@ -29,8 +29,6 @@
   G <-  objh$he(u.fit$par)
   Hinv <- solve(G)
   C.theta <- t(chol(Hinv))
-  M <- length(listM)
-  num <- 0
   myf <- function(v) {
       x <- u.theta + C.theta %*% v
       hx <- (-1) * objh$fn(x)
