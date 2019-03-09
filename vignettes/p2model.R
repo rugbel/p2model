@@ -32,6 +32,7 @@ XvC <- array(1, dim = c(g, g, 1))
 
 ## ---- Fitting the model--------------------------------------------------
 fit <- fit_p2(Y, Xn, Xn, XvD, XvC)    
+summary(fit)
 
 ## ---- fig.show='hold', fig.width=7.5, fig.height=4.5---------------------
 plot_effects_p2(fit)

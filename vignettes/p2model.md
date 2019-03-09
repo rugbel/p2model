@@ -1,4 +1,4 @@
-Here we present an example to illustrate how to estimate a *p*<sub>2</sub> model using the `p2model` package. The data used are the `high-tech managers` data, which were analyzed also in the Example 1 of the paper illustrating the methodology (Bellio and Soriani, 2017). The data can be accessed from the `NetData` package (Nowak et al., 2012).
+Here we present an example to illustrate how to estimate a *p*<sub>2</sub> model using the `p2model` package. The data used are the `high-tech managers` data, which were analyzed also in the Example 1 of the paper illustrating the methodology (Bellio and Soriani, 2019). The data can be accessed from the `NetData` package (Nowak et al., 2012).
 
 ``` r
 library(p2model)
@@ -59,7 +59,8 @@ XvC <- array(1, dim = c(g, g, 1))
 Now everything is in place for performing the actual estimation of the model, that can be made by the `p2.fit` function, implementing approximate maximum likelihood estimation based on the Laplace approximation
 
 ``` r
-fit <- fit_p2(Y, Xn, Xn, XvD, XvC)    
+fit <- fit_p2(Y, Xn, Xn, XvD, XvC) 
+summary(fit)
 ```
 
 The results are approximated maximum likelihood estimates based on the maximization of *L*<sup>\*</sup>(*θ*), i.e. the value of $\\hat\\theta^\*$.
@@ -100,4 +101,4 @@ the `fit_p2_IS` function, though the results in Bellio and Soriani
 provides satisfactory results. The method is computationally
 demanding, but the `fit_p2_IS\` function supports multiple-core parallel
 computation. The basic way to call the function in this example would
-simply  be `fit\_p2\_IS(fit, nc = detectCores())\`.
+simply  be `fit\_p2\_IS(fit, nc = parallel::detectCores())\`.
