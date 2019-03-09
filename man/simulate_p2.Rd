@@ -22,7 +22,7 @@ the \code{theta} slot of \code{objfit} is used.}
 it is \code{NULL}, the \code{Sigma} slot of \code{objfit} is used.}
 }
 \value{
-Either a single network (when \code{nsim}=1) or a list of \code{nsim} networks.
+Either a single network (when \code{nsim}=1) or a list of \code{nsim} networks. See \code{\link[network]{network}}.
 }
 \description{
 The function can be used to simulate from an estimated model or from a given

@@ -576,7 +576,7 @@ plot_effects_p2 <- function(fit, resolution = round(length(fit$ranef)) / 2, seed
 #' the \code{theta} slot of \code{objfit} is used.
 #' @param Sigma Variance matrix of random effects to be used for the simulation. In case
 #' it is \code{NULL}, the \code{Sigma} slot of \code{objfit} is used.
-#' @return Either a single network (when \code{nsim}=1) or a list of \code{nsim} networks.
+#' @return Either a single network (when \code{nsim}=1) or a list of \code{nsim} networks. See \code{\link[network]{network}}.
 #' @importFrom stats rbinom simulate
 #' @importFrom network network
 #' @export

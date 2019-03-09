@@ -15,6 +15,6 @@ studied in Bellio and Soriani (2019).
 A vignette is available with some illustrative examples.
 }
 \references{
-Bellio, R. and Soriani, N. (2017). Maximum likelihood estimation based on the
+Bellio, R. and Soriani, N. (2019). Maximum likelihood estimation based on the
 Laplace approximation for \eqn{p_2}{p2} network regression models. \emph{Submitted manuscript}.
 }
