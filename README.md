@@ -7,6 +7,6 @@ Bellio and Soriani (2019, _Submitted Manuscript_). The internal engine for the e
 ## Installation
 ``` 
 #install.packages("devtools")
-devtools::install_github(“rugbel/p2model", build_vignettes = TRUE)
+devtools::install_github("rugbel/p2model", build_vignettes = TRUE)
 ```
 Note for Windows users: on some systems,  installing the `devtools` may require administrator rights. 
