@@ -37,7 +37,7 @@ summary(fit)
 ## ---- fig.show='hold', fig.width=7.5, fig.height=4.5---------------------
 plot_effects_p2(fit)
 
-## ---- gof plot, fig.show='hold', fig.width=7.5, fig.height=4.5-----------
+## ---- gof plot, fig.show='hold', fig.width=7.5, fig.height=4.5, message=FALSE, warning=FALSE----
 par(mfrow = c(2, 3))
 g2 <- gof_p2(fit, GOF = ~idegree + odegree + distance + espartners + dspartners + triadcensus)
 plot(g2, main="")
