@@ -107,7 +107,7 @@ mod <- fit_p2(Y, Xn, Xn, XvD, XvC)
 print(mod)
 }
 \references{
-Bellio, R. and Soriani, N. (2017). Maximum likelihood estimation based on the
+Bellio, R. and Soriani, N. (2019). Maximum likelihood estimation based on the
 Laplace approximation for \eqn{p_2}{p2} network regression models. \emph{Submitted manuscript}.
 }
 \author{

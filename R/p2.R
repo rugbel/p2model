@@ -70,7 +70,7 @@
 #' @import NetData
 #' @useDynLib p2model
 #' @author Ruggero Bellio
-#' @references  Bellio, R. and Soriani, N. (2017). Maximum likelihood estimation based on the
+#' @references  Bellio, R. and Soriani, N. (2019). Maximum likelihood estimation based on the
 #' Laplace approximation for \eqn{p_2}{p2} network regression models. \emph{Submitted manuscript}.
 #' @examples
 #' # Analysis of the  kracknets data from the NetData package
@@ -115,7 +115,7 @@ fit_p2 <- function(y, XnS, XnR, XvD, XvC, M = 0, seed = NULL, trace = FALSE,
   if(!is.array(XvC) | length(dim(XvC))!=3) stop("XvC must be a 3-dim array\n")
   if(!is.null(XnS) &&  nrow(XnS)!=g) stop("Wrong dimension of XnS\n")
   if(!is.null(XnR) &&  nrow(XnR)!=g) stop("Wrong dimension of XnR\n")
-  if(dim(XvD)[2]!=g | dim(XvD)[1]!=g) stop("Wrong dimension of XvC\n")
+  if(dim(XvD)[2]!=g | dim(XvD)[1]!=g) stop("Wrong dimension of XvD\n")
   if(dim(XvC)[2]!=g | dim(XvC)[1]!=g) stop("Wrong dimension of XvC\n")
   if(!is.numeric(M) || M<0) M <- 0
   if(!is.matrix(penSigma)) penSigma <- NULL
@@ -207,20 +207,79 @@ fit_p2 <- function(y, XnS, XnR, XvD, XvC, M = 0, seed = NULL, trace = FALSE,
 
 
 #' @export
-print.p2 <- function(fit, ...) {
+print.p2 <- function(x, ...) {
   cat("p2 model fit by ML \n")
 
-  cat("Log likelihood at convergence:", fit$loglik, "\n")
+  cat("Log likelihood at convergence:", x$loglik, "\n")
 
   cat("Model coefficients: \n")
-  p <- length(fit$theta)-3
-  print.default(fit$theta[1:p], ...)
+  p <- length(x$theta)-3
+  print.default(x$theta[1:p], ...)
 
   cat("Variance matrix of random effects: \n")
 
-  print.default(fit$Sigma)
-  invisible(fit)
+  print.default(x$Sigma)
+  invisible(x)
 }
+
+
+
+#' @export
+summary.p2 <- function(object,... ) {
+  est <- object$theta
+  se <- object$theta.se
+  resultD <- resultC <- resultS <- resultR <- NULL
+  condD <-  attr(est,"names")=="delta1"
+  if(sum(condD)>0)  resultD <- cbind("Estimate" = est[condD], "Std. error" = se[condD])
+  condC <-  attr(est,"names")=="delta2"
+  if(sum(condC)>0) resultC <- cbind("Estimate" = est[condC], "Std. error" = se[condC])
+  condS <-  attr(est,"names")=="gamma1"
+  if(sum(condS)>0) resultS <- cbind("Estimate" = est[condS], "Std. error" = se[condS])
+  condR <-  attr(est,"names")=="gamma2"
+  if(sum(condR)>0) resultR <- cbind("Estimate" = est[condR], "Std. error" = se[condR])
+  summary <- list(resultC=resultC,
+                  resultD=resultD,
+                  resultS=resultS,
+                  resultR=resultR,
+                  loglik=object$loglik,
+                  AIC=object$AIC,
+                  BIC=object$BIC,
+                  vcov=object$theta.vcov,
+                  Sigma=object$Sigma)
+  class(summary) <- "summary.p2"
+  return(summary)
+}
+
+
+#' @export
+print.summary.p2 <- function(x, ... ) {
+  cat("--------------------------------------------\n")
+  cat("Approximate maximum likelihood estimation of p2 model\n") 
+  cat("Log-likelihood at maximum", x$loglik,"\n")
+  cat("Model selection criteria\n")
+  cat("AIC = ", x$AIC, "  BIC =", x$BIC,"\n")
+  cat("--------------------------------------------\n")
+  cat("Density coefficients\n")
+  print(x$resultD)
+  cat("--------------------------------------------\n")
+  cat("Reciprocity coefficients\n")
+  print(x$resultC)
+  cat("--------------------------------------------\n")
+  if(!is.null(x$resultS)){
+    cat("Sender coefficients\n")
+    print(x$resultS)
+    cat("--------------------------------------------\n")
+  }
+  if(!is.null(x$resultR)){
+    cat("Receiver coefficients\n")
+    print(x$resultR)
+    cat("--------------------------------------------\n")
+  }
+  cat("Variance matrix of random effects\n")
+  print(x$Sigma)
+  cat("--------------------------------------------\n")
+}
+
 
 
 #' Fitting function for p1 models
@@ -284,7 +343,7 @@ print.p2 <- function(fit, ...) {
 #' XvC <- array(1, dim=c(g, g, 1))
 #' # Now we are ready to fit the model
 #' mod <- fit_p1(Y, Xn, Xn, XvD, XvC)
-#' print(mod)
+#' summary(mod)
 fit_p1 <- function(y, XnS, XnR, XvD, XvC, trace=FALSE, init=NULL,  opt=nlminb,...)
 {
   # Do some argument checking
@@ -302,7 +361,7 @@ fit_p1 <- function(y, XnS, XnR, XvD, XvC, trace=FALSE, init=NULL,  opt=nlminb,..
   if(!is.array(XvC) | length(dim(XvC))!=3) stop("XvC must be a 3-dim array\n")
   if(!is.null(XnS) &&  nrow(XnS)!=g) stop("Wrong dimension of XnS\n")
   if(!is.null(XnR) &&  nrow(XnR)!=g) stop("Wrong dimension of XnR\n")
-  if(dim(XvD)[2]!=g | dim(XvD)[1]!=g) stop("Wrong dimension of XvC\n")
+  if(dim(XvD)[2]!=g | dim(XvD)[1]!=g) stop("Wrong dimension of XvD\n")
   if(dim(XvC)[2]!=g | dim(XvC)[1]!=g) stop("Wrong dimension of XvC\n")
   #  Create starting values
   kd <- dim(XvD)[3]
@@ -359,16 +418,70 @@ fit_p1 <- function(y, XnS, XnR, XvD, XvC, trace=FALSE, init=NULL,  opt=nlminb,..
 
 
 #' @export
-print.p1 <- function(fit, ...) {
+print.p1 <- function(x, ...) {
   cat("p1 model fit by ML \n")
 
-  cat("Log likelihood at convergence:", fit$loglik, "\n")
+  cat("Log likelihood at convergence:", x$loglik, "\n")
 
   cat("Model coefficients: \n")
-  p <- length(fit$theta)
-  print.default(fit$theta[1:p], ...)
-  invisible(fit)
+  p <- length(x$theta)
+  print.default(x$theta[1:p], ...)
+  invisible(x)
 }
+
+
+#' @export
+print.summary.p1 <- function(x, ... ) {
+   cat("--------------------------------------------\n")
+   cat("Maximum likelihood estimation of p1 model\n") 
+   cat("Log-likelihood at maximum", x$loglik,"\n")
+   cat("Model selection criteria\n")
+   cat("AIC = ", x$AIC, "  BIC =", x$BIC,"\n")
+   cat("--------------------------------------------\n")
+   cat("Density coefficients\n")
+   print(x$resultD)
+   cat("--------------------------------------------\n")
+   cat("Reciprocity coefficients\n")
+   print(x$resultC)
+   cat("--------------------------------------------\n")
+   if(!is.null(x$resultS)){
+     cat("Sender coefficients\n")
+     print(x$resultS)
+     cat("--------------------------------------------\n")
+   }
+   if(!is.null(x$resultR)){
+     cat("Receiver coefficients\n")
+     print(x$resultR)
+     cat("--------------------------------------------\n")
+   }
+}
+
+
+#' @export
+summary.p1 <- function(object,... ) {
+  est <- object$theta
+  se <- object$theta.se
+  resultD <- resultC <- resultS <- resultR <- NULL
+  condD <-  attr(est,"names")=="delta1"
+  if(sum(condD)>0)  resultD <- cbind("Estimate" = est[condD], "Std. error" = se[condD])
+  condC <-  attr(est,"names")=="delta2"
+  if(sum(condC)>0) resultC <- cbind("Estimate" = est[condC], "Std. error" = se[condC])
+  condS <-  attr(est,"names")=="gamma1"
+  if(sum(condS)>0) resultS <- cbind("Estimate" = est[condS], "Std. error" = se[condS])
+  condR <-  attr(est,"names")=="gamma2"
+  if(sum(condR)>0) resultR <- cbind("Estimate" = est[condR], "Std. error" = se[condR])
+  summary <- list(resultC=resultC,
+                  resultD=resultD,
+                  resultS=resultS,
+                  resultR=resultR,
+                  loglik=object$loglik,
+                  AIC=object$AIC,
+                  BIC=object$BIC,
+                  vcov=object$theta.vcov)
+  class(summary) <- "summary.p1"
+  return(summary)
+}
+
 
 
 #' Plot receiver and sender estimated random effects
@@ -822,6 +935,8 @@ function(objfit, nsim=100, GOF = ~idegree + odegree + distance, verbose = FALSE,
     class(returnlist) <- "gofobject"
     returnlist
 }
+
+
 
 
 

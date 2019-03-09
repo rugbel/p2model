@@ -4,8 +4,9 @@
 \alias{fit_p2_IS}
 \title{Improve the fit of p2 models}
 \usage{
-fit_p2_IS(objfit, M = 5000, ncores = 1, init = NULL, init.hess = TRUE,
-  seed = NULL, trace = 0, hessian = 1, grtol = 1e-06, xtol = 1e-12)
+fit_p2_IS(objfit, M = 5000, ncores = 1, init = NULL,
+  init.hess = TRUE, seed = NULL, trace = 0, hessian = 1,
+  grtol = 1e-06, xtol = 1e-12)
 }
 \arguments{
 \item{objfit}{An object produced by a call to \code{fit_p2}.}
@@ -42,7 +43,7 @@ can exploit the estimated Hessian from  \code{fit_p2} in a Quasi-Newton optimisa
 \examples{
 \dontrun{
 mod <- fit_p2(Y, Xn, Xn, XvD, XvC)
-nc <- detectCores()
+nc <- parallel::detectCores()
 modIS <- fit_p2_IS(mod, ncores=nc)}
 
 }

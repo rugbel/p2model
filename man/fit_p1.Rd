@@ -4,8 +4,8 @@
 \alias{fit_p1}
 \title{Fitting function for p1 models}
 \usage{
-fit_p1(y, XnS, XnR, XvD, XvC, trace = FALSE, init = NULL, opt = nlminb,
-  ...)
+fit_p1(y, XnS, XnR, XvD, XvC, trace = FALSE, init = NULL,
+  opt = nlminb, ...)
 }
 \arguments{
 \item{y}{An adjacency matrix of size \eqn{g \times g}{g x g}.}
@@ -78,7 +78,7 @@ for(i in 1:g)
 XvC <- array(1, dim=c(g, g, 1))
 # Now we are ready to fit the model
 mod <- fit_p1(Y, Xn, Xn, XvD, XvC)
-print(mod)
+summary(mod)
 }
 \author{
 Ruggero Bellio

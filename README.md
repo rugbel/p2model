@@ -1,7 +1,7 @@
 # p2model
 This package can be used to estimate the parameters of a p2 model for directed binary networks with correlated 
 random effects. It implements (approximate) maximum likelihood estimation, following the methodology studied in 
-Bellio and Soriani (2017, _Submitted Manuscript_). The internal engine for the estimation is based on the 
+Bellio and Soriani (2019, _Submitted Manuscript_). The internal engine for the estimation is based on the 
 `TMB` package. A vignette is available with some illustrative examples.
 
 ## Installation
@@ -9,3 +9,4 @@ Bellio and Soriani (2017, _Submitted Manuscript_). The internal engine for the e
 #install.packages("devtools")
 devtools::install_github(“rugbel/p2model", build_vignettes = TRUE)
 ```
+Note for Windows users: on some systems,  installing the `devtools` may require administrator rights. 

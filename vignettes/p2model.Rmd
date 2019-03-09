@@ -64,6 +64,7 @@ that can be made by the `p2.fit` function, implementing approximate maximum
 likelihood estimation based on the Laplace approximation
 ```{r, Fitting the model}
 fit <- fit_p2(Y, Xn, Xn, XvD, XvC)    
+summary(fit)
 ```
 The results are approximated maximum likelihood estimates based on the maximization of $L^*(\theta)$, i.e. 
 the value of $\hat\theta^*$. 
@@ -92,8 +93,8 @@ summary(obj.sim)
 ```
 Finally, the package makes available maximum likelihood estimation using 
 parameter dependent Laplace Importance Sampling, implemented by the `fit_p2_IS`
-function, though the results in Bellio and Soriani (2017) suggests that first-order
+function, though the results in Bellio and Soriani (2019) suggests that first-order
 Laplace approximation usually provides satisfactory results. The method is computationally
 demanding, but the `fit_p2_IS` function supports multiple-core parallel computation. The
-basic way to call the function in this example would  simply  be `fit_p2_IS(fit, nc = detectCores())`.
+basic way to call the function in this example would  simply  be `fit_p2_IS(fit, nc = parallel::detectCores())`.
 

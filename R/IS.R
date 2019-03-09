@@ -2,26 +2,26 @@
 #' @keywords internal
 .crit <- function(mle, logl, lapfit, penalized = FALSE)
 {
+  k <- length(mle)
   if(penalized) {
-    k <- length(mle)
     alpha <- mle[(k-2):k]
     Sigma <- a2S(alpha)
     DS <-  Sigma[1,1] * Sigma[2,2] - Sigma[2,1]^2
     logl <- logl  - 0.5 * log(DS)
    }
-  g <- length(lapfit$random) / 2
-  k <- length(mle)
+  g <- length(lapfit$ranef) / 2
   return(list(loglik = logl, AIC = -2 * logl + 2 * k, BIC = - 2 * logl + log(g) * k))
 }
 
 
 #' @importFrom stats nlminb
+#' @importFrom TMB MakeADFun
 #' @keywords internal
 .likIStidy <- function(theta, lapfit, listM, ncores = 1)
 {
   obj.par <- .para.fun(theta, lapfit)
   data <- lapfit$model.data
-  objh <- TMB::MakeADFun(data = data, parameters = obj.par$para, DLL = "p2model",
+  objh <- MakeADFun(data = data, parameters = obj.par$para, DLL = "p2model",
                          map = obj.par$map, silent = TRUE)
   u.fit <- nlminb(objh$par, objh$fn, objh$gr, objh$he)
   u.theta<- u.fit$par ###here the penalty is already included!!!
@@ -70,7 +70,7 @@
 #' @examples
 #' \dontrun{
 #' mod <- fit_p2(Y, Xn, Xn, XvD, XvC)
-#' nc <- detectCores()
+#' nc <- parallel::detectCores()
 #' modIS <- fit_p2_IS(mod, ncores=nc)}
 #'
 fit_p2_IS <- function(objfit, M = 5000, ncores = 1, init = NULL, init.hess = TRUE, seed = NULL,

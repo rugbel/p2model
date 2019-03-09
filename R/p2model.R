@@ -3,7 +3,7 @@
 #' The \code{p2model} package can be used to estimate the parameters of a p2 model
 #' for directed binary networks with correlated random effects. It implements
 #' (approximate) maximum likelihood estimation, following the methodology
-#' studied in Bellio and Soriani (2017).
+#' studied in Bellio and Soriani (2019).
 #'
 #' A vignette is available with some illustrative examples.
 #'
