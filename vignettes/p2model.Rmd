@@ -1,9 +1,9 @@
 ---
-title: Estimating $p_2$ models with `p2model`
+title: Estimating $p_2$ models
 author: Ruggero Bellio
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Estimating $p_2$ models}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

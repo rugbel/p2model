@@ -932,7 +932,7 @@ function(objfit, nsim=100, GOF = ~idegree + odegree + distance, verbose = FALSE,
         "pobs.espart", "sim.espart", "psim.espart", "pval.espart",
         "bds.espart", "obs.dspart", "pobs.dspart", "sim.dspart",
         "psim.dspart", "pval.dspart", "bds.dspart", "GOF")
-    class(returnlist) <- "gofobject"
+    class(returnlist) <- "gof"
     returnlist
 }
 

@@ -7,6 +7,6 @@ Bellio and Soriani (2019, _Submitted Manuscript_). The internal engine for the e
 ## Installation
 ``` 
 #install.packages("remotes")
-remotes::install_github("rugbel/p2model", build = TRUE, build_opts = c("--no-resave-data", "--no-manual"))
+remotes::install_github("rugbel/p2model", build = TRUE)
 ```
 

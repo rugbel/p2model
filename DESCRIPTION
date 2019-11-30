@@ -1,6 +1,6 @@
 Package: p2model
 Title: Maximum Likelihood Estimation of p2 models 
-Version: 0.5
+Version: 0.6
 Author: Ruggero Bellio
 Maintainer: Ruggero Bellio <ruggero.bellio@uniud.it>
 Description: Function for fitting the p2 model for directed binary networks, using 
